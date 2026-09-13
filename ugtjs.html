@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حجز طيران</title>
+<style>
+body{background:#667eea;padding:15px;font-family:Tahoma}
+.box{background:white;border-radius:15px;padding:20px;max-width:600px;margin:auto}
+h1{text-align:center;color:#764ba2;margin-bottom:15px}
+label{display:block;margin-top:10px;font-weight:bold}
+input,select{width:100%;padding:12px;margin:5px 0;border:2px solid #ddd;border-radius:8px;font-size:16px}
+button{width:100%;padding:15px;background:#667eea;color:white;border:0;border-radius:8px;font-size:18px;margin-top:15px}
+button:hover{background:#764ba2}
+.ticket{display:none;background:#f0f8ff;border:3px dashed #667eea;padding:20px;margin-top:20px;border-radius:10px}
+.ok{display:none;background:#4CAF50;color:white;padding:12px;border-radius:8px;margin-bottom:10px;text-align:center}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>✈️ حجز تذاكر الطيران</h1>
+<div class="ok" id="ok">✅ تم الحجز بنجاح</div>
+
+<label>الاسم الكامل</label>
+<input type="text" id="name" placeholder="اكتب اسمك">
+
+<label>من</label>
+<select id="from">
+<option>الخرطوم</option>
+<option>القاهرة</option>
+<option>دبي</option>
+<option>الرياض</option>
+</select>
+
+<label>الى</label>
+<select id="to">
+<option>دبي</option>
+<option>الخرطوم</option>
+<option>القاهرة</option>
+<option>الرياض</option>
+</select>
+
+<label>تاريخ السفر</label>
+<input type="date" id="date">
+
+<label>عدد الركاب</label>
+<select id="pass">
+<option>1</option><option>2</option><option>3</option><option>4</option>
+</select>
+
+<label>الدرجة</label>
+<select id="class">
+<option value="500">اقتصادية - 500$</option>
+<option value="1200">اعمال - 1200$</option>
+<option value="2500">اولى - 2500$</option>
+</select>
+
+<button onclick="book()">حجز التذكرة</button>
+
+<div class="ticket" id="ticket">
+<h2>🎫 التذكرة</h2>
+<p><b>الاسم:</b> <span id="n"></span></p>
+<p><b>الرحلة:</b> <span id="f"></span> → <span id="t"></span></p>
+<p><b>التاريخ:</b> <span id="d"></span></p>
+<p><b>الركاب:</b> <span id="ps"></span></p>
+<p><b>الاجمالي:</b> <span id="p"></span> $</p>
+</div>
+</div>
+
+<script>
+function book(){
+let name=document.getElementById("name").value;
+let from=document.getElementById("from").value;
+let to=document.getElementById("to").value;
+let date=document.getElementById("date").value;
+let pass=document.getElementById("pass").value;
+let price=document.getElementById("class").value;
+if(name==""||date==""){alert("املئي الاسم والتاريخ");return}
+document.getElementById("ok").style.display="block";
+document.getElementById("n").innerText=name;
+document.getElementById("f").innerText=from;
+document.getElementById("t").innerText=to;
+document.getElementById("d").innerText=date;
+document.getElementById("ps").innerText=pass;
+document.getElementById("p").innerText=price*pass;
+document.getElementById("ticket").style.display="block";
+setTimeout(()=>{document.getElementById("ok").style.display="none"},3000)
+}
+</script>
+</body>
+</html>
